@@ -23,11 +23,15 @@ void ALMAHealthPickup::BeginPlay()
 void ALMAHealthPickup::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
-	const auto Charcter = Cast<ALMADefaultCharacter>(OtherActor);
-	if (GivePickup(Charcter))
+	const auto Character = Cast<ALMADefaultCharacter>(OtherActor);
+	if (Character)
 	{
-		PickupWasTaken();
+		if (GivePickup(Character))
+		{
+			PickupWasTaken();
+		}
 	}
+	
 }
 
 void ALMAHealthPickup::Tick(float DeltaTime)

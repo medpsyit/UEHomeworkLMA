@@ -27,6 +27,9 @@ public:
 	UFUNCTION()
 	ULMAStaminaComponent* GetStaminaComponent() const { return StaminaComponent; }  
 
+	UFUNCTION()
+	void OnDeath();
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	USpringArmComponent* SpringArmComponent;
@@ -83,7 +86,7 @@ private:
 	float SetArm(float Value);
 	void SprintProcess(float DeltaTime);
 
-	void OnDeath();
+	//void OnDeath();
 	void OnHealthChanged(float NewHealth);
 
 	void OnStaminaChanged(float NewStamina);

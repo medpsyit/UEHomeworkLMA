@@ -3,7 +3,7 @@
 
 #include "Weapon/LMABaseWeapon.h"
 
-DEFINE_LOG_CATEGORY_STATIC(LogWeapon, All, All);
+//DEFINE_LOG_CATEGORY_STATIC(LogWeapon, All, All);
 
 // Sets default values
 ALMABaseWeapon::ALMABaseWeapon()
@@ -76,7 +76,7 @@ bool ALMABaseWeapon::AmmoIsFull() const
 void ALMABaseWeapon::DecrementBullets()
 {
 	CurrentAmmoWeapon.Bullets--;
-	UE_LOG(LogWeapon, Display, TEXT("Bullets = %s"), *FString::FromInt(CurrentAmmoWeapon.Bullets));
+	//UE_LOG(LogWeapon, Display, TEXT("Bullets = %s"), *FString::FromInt(CurrentAmmoWeapon.Bullets));
 	if (IsCurrentClipEmpty())
 	{
 		EmptyAmmo.Broadcast();

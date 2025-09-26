@@ -37,6 +37,8 @@ public:
 	void ChangeClip();
 	bool AmmoIsFull() const;
 
+	FAmmoWeapon GetCurrentAmmoWeapon() const { return CurrentAmmoWeapon; }
+
 	FEmptyAmmo EmptyAmmo;
 
 protected:
