@@ -23,6 +23,9 @@ struct FAmmoWeapon
 	bool Infinite;
 };
 
+class USoundWave;
+class UNiagaraSystem;
+
 UCLASS()
 class LEAVEMEALONE_API ALMABaseWeapon : public AActor
 {
@@ -53,6 +56,15 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
 	FAmmoWeapon AmmoWeapon{30, 0, true};
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	USoundWave* ShootWave;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	UNiagaraSystem* TraceEffect;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	FString TraceName = "Tracer";
+	void SpawnTrace(const FVector& TraceStart, const FVector& TraceEnd);
 
 	void Shoot();
 
