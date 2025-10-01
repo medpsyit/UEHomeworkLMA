@@ -86,10 +86,5 @@ private:
 	float SetArm(float Value);
 	void SprintProcess(float DeltaTime);
 
-	//void OnDeath();
-	void OnHealthChanged(float NewHealth);
-
-	void OnStaminaChanged(float NewStamina);
-
 	void RotationPlayerOnCursor();
 };
