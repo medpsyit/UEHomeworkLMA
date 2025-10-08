@@ -2,6 +2,7 @@
 
 
 #include "Weapon/LMABaseWeapon.h"
+#include "Engine/DamageEvents.h"
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -55,6 +56,7 @@ void ALMABaseWeapon::Shoot()
 	FVector TracerEnd = TraceEnd;
 	if (HitResult.bBlockingHit)
 	{
+		MakeDamage(HitResult);
 		TracerEnd = HitResult.ImpactPoint;
 	}
 	SpawnTrace(TraceStart, TracerEnd);
@@ -70,6 +72,20 @@ void ALMABaseWeapon::SpawnTrace(const FVector& TraceStart, const FVector& TraceE
 	{
 		TraceFX->SetNiagaraVariableVec3(TraceName, TraceEnd);
 	}
+}
+
+void ALMABaseWeapon::MakeDamage(const FHitResult& HitResult)
+{
+	const auto Zombie = HitResult.GetActor();
+	if (!Zombie)
+		return;
+	const auto Pawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	if (!Pawn)
+		return;
+	const auto Controller = Pawn->GetController<APlayerController>();
+	if (!Controller)
+		return;
+	Zombie->TakeDamage(Damage, FDamageEvent(), Controller, this);
 }
 
 void ALMABaseWeapon::ChangeClip()
